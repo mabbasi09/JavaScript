@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CMPS 162: Module 1 Programming Project</title>
+<style>* { font-family: monospace; }</style>
+<script>
+
+//---------//
+// Strings //
+//---------//
+console.log("Strings");
+
+// 1. Make all countries in the following array follow the same formatting:
+//    The first letter should be upper case, the rest lower case. Print the
+//    result to the console.
+var countries = ["AustraliA", "greece", "PERU", "ChInA"];
+var firstUpper; //store first letter here
+var restLower;  //all the other letters here
+
+for (var i = 0; i < countries.length; i++) { //iterate thru each country
+  firstUpper = countries[i].slice(0, 1) //assign first letter to variable
+  firstUpper = firstUpper.toUpperCase() //make upper case
+  restLower = countries[i].slice(1) //assign rest of letters
+  restLower = restLower.toLowerCase() //make lower case
+  countries[i] = "" + firstUpper + restLower + ""; //concatenate w formatting
+}
+console.log(countries);
+
+// 2. Get every second and third letter from each country and concatenate them.
+//    Print the results to the console.
+var char2; //store 2nd letter
+var char3; //store 3rd letter
+var twoThree = []; //will replace each country with its 2nd and 3rd letters
+
+for (var i = 0; i < countries.length; i++) {
+  char2 = countries[i].slice(1, 2); //assign 2nd letter to variable
+  char3 = countries[i].slice(2, 3); //assign 3rd letter
+  twoThree[i] = "" + char2 + char3 + ""; //concatenates each letter as new elements
+}
+console.log(twoThree)
+
+// 3. In the sentence below replace 'dart' with 'arrow' by using the indexOf
+//    and slice functions.
+var sentence = "Time flies like an dart; fruit flies like a banana.";
+
+var replacement = sentence.indexOf("dart"); //mark index where word needs replaced
+if (replacement !== -1) {   //checks if word is in string
+  sentence = sentence.slice(0, replacement) + "arrow" +   //places "arrow" at index of "d" in dart
+  sentence.slice(replacement + 4)    // "continues sentence at index right after end of dart"
+}
+console.log(sentence);
+//easier alternative is to use replace method
+//if (replacement !== 1) {
+// sentence = sentence.replace("dart", "arrow");
+//}
+
+// 4. Find the index of the last occurrence of flies in sentence.
+var last = sentence.lastIndexOf("flies");
+console.log(last);
+
+// 5. Prompt the user for a string, reverse it, and show the result to the user.
+var word = prompt("Spell a word backwards: "); //input string
+var len = word.length;
+var backwards = []; //will place string characters here in reverse order
+
+for (var i = 0; i < len; i++) { //iterate thru characters
+  backwards[i] = word.charAt(len - i - 1); //starts at last character and moves to first
+}
+alert(backwards.join("")); //displays reversed characters together
+
+//---------//
+// Numbers //
+//---------//
+console.log("Numbers");
+
+// Use the following variable to answer the next questions.
+
+var value = 13.3;
+
+// 1. Round the value using normal math rules.
+Math.round(value); // 13
+
+// 2. Round the value up.
+Math.ceil(value); // 14
+
+// 3. Round the value down.
+Math.floor(value); // 13
+
+// 4. Simulate a coin flip by generating a random number. Assume the coin is
+//    fair and print the result, heads or tails, to the console.
+var flip = Math.floor(Math.random() * 2); // creates only two outcomes, 0 and 1
+if (flip === 1) {
+  console.log("Heads"); // 1 is heads
+}
+else {
+  console.log("Tails"); // 0 is tails
+}
+
+//-------//
+// Dates //
+//-------//
+console.log("Dates");
+
+// 1. Prompt the user for their age and proceed to show in what year they
+//    were born (you can assume they already had their birthday in the current
+//    year).
+var age = parseInt(prompt("What is your age?"));
+var date = new Date();
+alert("You were born on " + (date.getFullYear() - age));
+
+// 2. Make a program that does the following: (1) Use a prompt to obtain the
+//    birth year of the user. (2) Use a prompt to obtain the birth month of
+//    the user. (3) Use a prompt to obtain the birth day of the user.
+//    (4) Calculate how old the user is in days. (5) Show the result to
+//    the user.
+var today = new Date(); //Today's date
+var born = new Date(); //Create birthday object
+alert("Please enter your birthday in YYYY/MM/DD format"); //need digits to run program
+var bYear = prompt("What year were you born?", "ex. 1984");
+var bMonth = prompt("In what month?", "ex. 07 is July") - 1;
+var bDay = prompt("and on what date?", "ex. 01 is the 1st");
+//Set empty birthday object with user input values
+born.setFullYear(bYear);
+born.setMonth(bMonth);
+born.setDate(bDay);
+
+//calculate difference of birthday from todays date in days
+var ageInDays = (today.getTime() - born.getTime()) / (1000 * 60 * 60 * 24);
+
+alert("You are " + Math.floor(ageInDays) + " days old."); //round days down and display
+
+</script>
+<body>
+  See console!
+</body>
+</html>
