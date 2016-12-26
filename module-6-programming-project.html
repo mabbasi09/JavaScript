@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CMPS 162: Module 6 Programming Project</title>
+<style>* { font-family: monospace; }</style>
+<body id="body">
+  See console!<br><br>
+  <input type="text" id="fahrenheit" onBlur="fahrenheitToCelcius();"> - enter fahrenheit<br>
+  or<br>
+  <input type="text" id="celcius" onBlur="celciusToFahrenheit();"> - enter celcius<br>
+</body>
+<script>
+
+//---------------------------//
+// The Document Object Model //
+//---------------------------//
+console.log("The Document Object Model");
+
+// 1. Complete the Fahrenheit to Celcius converter below. The following tasks
+//    remain: (1) on the blur event in the Fahrenheit input field call the
+//    fahrenheitToCelcius function, (2) on the blur event in the Celcius input
+//    field call the celciusToFahrenheit function, (3) implement the
+//    fahrenheitToCelcius function that reads from the Fahrenheit input field,
+//    performs the conversion, and writes to the Celcius field, and
+//    (4) implement the celciusToFahrenheit function that reads from the Celcius
+//    input field, performs the conversion, and writes to the Fahrenheit field.
+//    The conversion formulas are here: https://en.wikipedia.org/wiki/Fahrenheit
+//    An example is that 80 degrees Fahrenheit should be 26.7 degrees Celcius
+//    (and vice versa).
+
+function fahrenheitToCelcius() {
+  var fInput = document.getElementById("fahrenheit").value;
+  var cOutput = (fInput - 32) * (5 / 9);
+  document.getElementById("celcius").value = cOutput.toFixed(1);
+}
+
+function celciusToFahrenheit() {
+  var cInput = document.getElementById("celcius").value;
+  var fOutput = (cInput * (9 / 5)) + 32;
+  document.getElementById("fahrenheit").value = fOutput.toFixed(1);
+}
+
+// 2. Write a function to count the number of DOM elements in the body.
+var bodyNodes = document.body.childNodes;
+var eCounter = 0;
+function eCount () {
+  for (var i = 0; i < bodyNodes.length; i++) {
+    if (bodyNodes[i].nodeType === 1) {
+      eCounter++;
+    }
+  }
+  console.log("There are " + eCounter + " element nodes in the body.");
+}
+eCount();
+
+// 3. Write a function to count the number of text elements in the body.
+function textCount() {
+  var tCounter = 0;
+  for (var i = 0; i < bodyNodes.length; i++) {
+    if (bodyNodes[i].nodeType === 3) {
+      tCounter++;
+    }
+  }
+  console.log("There are " + tCounter + " text nodes in the body.");
+}
+textCount();
+</script>
+</html>
