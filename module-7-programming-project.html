@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CMPS 162: Module 7 Programming Project</title>
+<style>* { font-family: monospace; }</style>
+<script>
+
+//---------//
+// Objects //
+//---------//
+console.log("Objects");
+
+// 1. Complete the implementation of the Circle object that has methods to
+//    calculate the area and circumference. You can find a start of the code
+//    and how the object is supposed to be used below. Note that the initial
+//    code has several lines commented out that you should complete.
+
+function Circle(radius) {
+  this.radius = radius
+}
+
+// implement the methods
+//Area prototype method
+// A = pie * r^2
+Circle.prototype.getArea = function() {
+  var pie = 3.14;
+  var area = pie * (this.radius * this.radius);
+  return area;
+}
+
+//C = pie * D
+//circumference prototype method
+Circle.prototype.getCircumference = function() {
+  var pie = 3.14;
+  var circumference = pie * (2 * this.radius);
+  return circumference;
+}
+
+// create the Circle object
+var circle = new Circle(10);
+
+// calculate area, not working yet!
+var area = circle.getArea();
+
+// calculate circumference, not working yet!
+var circumference = circle.getCircumference();
+
+// show output to user
+alert("A circle with a radius of " + circle.radius + " has an area of " + area +
+" and a circumference of " + parseInt(circumference));
+
+// 2. Write the same implementation for a rectangle. Note that the constructor
+//    takes two parameters in this case: width and height.
+function Rectangle(width, height) {
+  this.width = width;
+  this.height = height;
+}
+
+//prototype method for area
+Rectangle.prototype.area = function() {
+  var area = this.width * this.height;
+  return area;
+}
+
+//prototype method for perimeter
+Rectangle.prototype.perimeter = function() {
+  var perimeter = (2 * this.width) + (2 * this.height);
+  return perimeter;
+}
+
+//create rectangle object with width of 3 and height of 5
+var newRec = new Rectangle(3, 5);
+
+//calculate area of new object, should be 15
+var recArea = newRec.area();
+
+//calculate perimeter of new object, should be 16
+var recPer = newRec.perimeter();
+
+//show output to user
+alert("A rectangle with a width of " + newRec.width + " and a height of " + newRec.height +
+" has an area of " + recArea +
+" and a perimeter of " + recPer);
+
+//-----------------//
+// Browser Control //
+//-----------------//
+console.log("Browser Control");
+
+// 1. Create a link in the HTML body that onclick does the following things:
+//    (1) checks if a popup blocker is enabled, and if yes alerts a warning,
+//    (2) opens a page in a new window to https://it.pointpark.edu/
+function popCheck() {
+  var test = window.open("", "", "width=100,height=100");
+  if (test === null || typeof(test) === "undefined") {
+    alert("Please disable your popup blocker");
+  }
+  test.close();
+  var newPage = window.open("https://it.pointpark.edu");
+}
+
+
+</script>
+<body onClick="popCheck();">
+  See console!
+</body>
+</html>
